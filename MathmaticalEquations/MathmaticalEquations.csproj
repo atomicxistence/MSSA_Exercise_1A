@@ -37,6 +37,9 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="IMenuItem.cs" />
+    <Compile Include="CircleAreaCircumference.cs" />
+    <Compile Include="Exit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

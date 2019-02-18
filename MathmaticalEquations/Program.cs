@@ -1,47 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MathmaticalEquations
 {
     class Program
     {
+        public static List<IMenuItem> MenuItems { get; private set; }
+
         public static void Main()
         {
-            bool tryAgain = false;
+            InitializeClasses();
 
             do
             {
-                var circle = new Circle(AskForRadius());
+                Menu.Display();
 
-                Console.WriteLine();
-                Console.WriteLine($"The area of your circle is {circle.Area}");
-                Console.WriteLine($"The circumference of your circle is {circle.Circumference}");
-                Console.ReadLine();
+            } while (Input.Selection());
 
-                tryAgain = Input.Request("Would you like to try again? Y/N").ToUpper() == "Y";
-
-            } while (tryAgain);
-
-
-            Environment.Exit(0);
+            MenuItems[Input.SelectionItem].Run();
         }
 
-        private static double AskForRadius()
+        private static void InitializeClasses()
         {
-            var input = Input.Request("Please enter your circle's radius: ");
+            MenuItems = new List<IMenuItem>();
 
-            if (double.TryParse(input, out double result))
-            {
-                if (Input.PositiveNumber(result))
-                {
-                    return result;
-                }
+            var circleAreaCircumference = new CircleAreaCircumference();
+            MenuItems.Add(circleAreaCircumference);
 
-                Input.Request("Please enter a number greater than zero. Press ENTER to continue.");
-                return AskForRadius();
-            }
-
-            Input.Request("Please enter a number.  Press ENTER to continue.");
-            return AskForRadius();
+            var exit = new Exit();
+            MenuItems.Add(exit);
         }
     }
 }
