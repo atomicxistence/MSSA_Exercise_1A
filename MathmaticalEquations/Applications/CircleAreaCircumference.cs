@@ -26,7 +26,6 @@ namespace MathmaticalEquations
                 display.DoubleLine($"Your circle has an area of {circle.Area}", 
                                    $"Your circle has a circumference of {circle.Circumference}", 
                                    "PRESS ENTER TO CONTINUE");
-                Console.ReadLine();
 
             } while (AskAgain());
         }

@@ -59,6 +59,7 @@ namespace MathmaticalEquations
             Console.CursorVisible = false;
             PrintSubtitle();
             PrintSingleLine(firstLine);
+            Console.ReadLine();
         }
 
         public void DoubleLine(string firstLine, string secondLine, string subtitle)
@@ -68,6 +69,7 @@ namespace MathmaticalEquations
             Console.CursorVisible = false;
             PrintSubtitle();
             PrintDoubleLine(firstLine, secondLine);
+            Console.ReadLine();
         }
 
         public void PrintMenuItem(string itemName, bool isCurrentlySelected)

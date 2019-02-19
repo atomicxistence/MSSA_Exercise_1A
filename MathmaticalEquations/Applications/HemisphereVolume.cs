@@ -24,7 +24,6 @@ namespace MathmaticalEquations
                 var radius = AskForInput();
                 var hemisphere = new Hemisphere(radius);
                 display.SingleLine($"Your hemisphere has a volume of {hemisphere.Volume}", "PRESS ENTER TO CONTINUE");
-                Console.ReadLine();
 
             } while (AskAgain());
         }
