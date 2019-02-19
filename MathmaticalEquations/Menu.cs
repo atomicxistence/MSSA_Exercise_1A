@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace MathmaticalEquations
 {
@@ -10,6 +9,7 @@ namespace MathmaticalEquations
         private static int totalRows;
 
         private static readonly string title = "Mathmatical Equations";
+        private static readonly string selectionIndicator = $" ▶ ";
         private static readonly int rowLength = 40;
         private static readonly int defaultRows = 3;
 
@@ -40,10 +40,10 @@ namespace MathmaticalEquations
             Console.ForegroundColor = borderColor;
 
             //Top Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2 - 1, screenHeight / 2 - totalRows / 2 - 1);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 - 1);
             PrintBorderedSpaceFill("-");
             //Bottom Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2 - 1, screenHeight / 2 + totalRows / 2 + 1);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 + totalRows / 2 + 1);
             PrintBorderedSpaceFill("-");
 
             Console.ResetColor();
@@ -54,9 +54,11 @@ namespace MathmaticalEquations
             Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2);
             Console.BackgroundColor = titleHighlightColor;
             Console.ForegroundColor = textColor;
-            PrintEmptySpaceFill(title.Length);
+            //variable to control the centering if the title is an odd number of characters
+            var leftAlignCenter = rowLength - (title.Length / 2);
+            PrintEmptySpaceFill(leftAlignCenter);
             Console.Write(title);
-            PrintEmptySpaceFill(title.Length);
+            PrintEmptySpaceFill(rowLength - leftAlignCenter + title.Length);
             Console.ResetColor();
         }
 
@@ -70,11 +72,13 @@ namespace MathmaticalEquations
                 {
                     Console.BackgroundColor = highlightColor;
                     Console.ForegroundColor = textColor;
+                    Console.Write(selectionIndicator);
                     Console.Write(Program.MenuItems[i].Title());
-                    PrintEmptySpaceFill(Program.MenuItems[i].Title().Length);
+                    PrintEmptySpaceFill(Program.MenuItems[i].Title().Length + selectionIndicator.Length);
                     Console.ResetColor();
                 }else 
                 {
+                    Console.Write(" ");
                     Console.Write(Program.MenuItems[i].Title());
                     PrintEmptySpaceFill(Program.MenuItems[i].Title().Length);
                 }
@@ -84,7 +88,7 @@ namespace MathmaticalEquations
 
         private static void PrintEmptySpaceFill(int nonEmptySpace)
         {
-            for (int i = 0; i < (rowLength - nonEmptySpace) / 2; i++)
+            for (int i = 0; i < (rowLength - nonEmptySpace); i++)
             {
                 Console.Write(" ");
             }
