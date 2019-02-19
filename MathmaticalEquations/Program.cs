@@ -31,10 +31,13 @@ namespace MathmaticalEquations
             var hemisphereVolume = new HemisphereVolume();
             menuItems.Add(hemisphereVolume);
 
+            var triangleArea = new TriangleArea();
+            menuItems.Add(triangleArea);
+
             var exit = new Exit();
             menuItems.Add(exit);
 
-            mainMenu = new Menu(menuItems, "Mathmatical Equations");
+            mainMenu = new Menu(menuItems, "Mathmatical Formulas");
         }
     }
 }

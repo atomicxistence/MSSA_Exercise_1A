@@ -46,6 +46,8 @@
     <Compile Include="Utilities\Validator.cs" />
     <Compile Include="Applications\HemisphereVolume.cs" />
     <Compile Include="Applications\Hemisphere.cs" />
+    <Compile Include="Applications\TriangleArea.cs" />
+    <Compile Include="Applications\Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Applications\" />
