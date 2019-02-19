@@ -1,106 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MathmaticalEquations
 {
-    public static class Menu
+    public class Menu
     {
-        private static int screenWidth;
-        private static int screenHeight;
-        private static int totalRows;
+        private int totalRows;
 
-        private static readonly string title = "Mathmatical Equations";
-        private static readonly string selectionIndicator = $" ▶ ";
-        private static readonly int rowLength = 40;
-        private static readonly int defaultRows = 3;
+        private string title;
+        private List<IMenuItem> menuItems = new List<IMenuItem>();
+        private MenuInput input = new MenuInput();
 
-        private static readonly ConsoleColor highlightColor = ConsoleColor.Cyan;
-        private static readonly ConsoleColor textColor = ConsoleColor.Black;
-        private static readonly ConsoleColor borderColor = ConsoleColor.DarkCyan;
-        private static readonly ConsoleColor titleHighlightColor = ConsoleColor.DarkMagenta;
+        private readonly string selectionIndicator = $" ▶ ";
+        private readonly string subtitle = "USE ARROWS KEYS TO NAVIGATE | PRESS ENTER TO SELECT";
+        private readonly int rowLength = GlobalVariables.rowLength;
+        private readonly int defaultRows = 3;
 
-        public static void Display()
+        public Menu(List<IMenuItem> menuItems, string menuTitle)
         {
-            Console.CursorVisible = false;
-
-            SetScreenDimensions();
-            PrintBorder();
-            PrintTitle();
-            PrintMenuItems(); 
+            this.menuItems = menuItems;
+            title = menuTitle;
         }
 
-        private static void SetScreenDimensions()
+        public void Display()
         {
-            screenWidth = Console.WindowWidth;
-            screenHeight = Console.WindowHeight;
-            totalRows = Program.MenuItems.Count + defaultRows;
+            totalRows = menuItems.Count + defaultRows;
+            var display = new Display(title, totalRows);
+            display.MenuList(subtitle);
+            PrintMenuItems(display); 
         }
 
-        private static void PrintBorder()
+        public bool Selecting()
         {
-            Console.ForegroundColor = borderColor;
-
-            //Top Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 - 1);
-            PrintBorderedSpaceFill("-");
-            //Bottom Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 + totalRows / 2 + 1);
-            PrintBorderedSpaceFill("-");
-
-            Console.ResetColor();
+            return input.Selection(menuItems.Count);
         }
 
-        private static void PrintTitle()
+        public int CurrentSelection()
         {
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2);
-            Console.BackgroundColor = titleHighlightColor;
-            Console.ForegroundColor = textColor;
-            //variable to control the centering if the title is an odd number of characters
-            var leftAlignCenter = rowLength - (title.Length / 2);
-            PrintEmptySpaceFill(leftAlignCenter);
-            Console.Write(title);
-            PrintEmptySpaceFill(rowLength - leftAlignCenter + title.Length);
-            Console.ResetColor();
+            return input.selectionItem;
         }
 
-        private static void PrintMenuItems()
+        private void PrintMenuItems(Display display)
         {
-            for (int i = 0; i < Program.MenuItems.Count; i++)
+            for (int i = 0; i < menuItems.Count; i++)
             {
                 var yOffset = i + defaultRows;
-                Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + yOffset);
-                if (Input.SelectionItem == i)
-                {
-                    Console.BackgroundColor = highlightColor;
-                    Console.ForegroundColor = textColor;
-                    Console.Write(selectionIndicator);
-                    Console.Write(Program.MenuItems[i].Title());
-                    PrintEmptySpaceFill(Program.MenuItems[i].Title().Length + selectionIndicator.Length);
-                    Console.ResetColor();
-                }else 
-                {
-                    Console.Write(" ");
-                    Console.Write(Program.MenuItems[i].Title());
-                    PrintEmptySpaceFill(Program.MenuItems[i].Title().Length);
-                }
-
+                Console.SetCursorPosition(Console.WindowWidth / 2 - rowLength / 2, Console.WindowHeight / 2 - totalRows / 2 + yOffset);
+                display.PrintMenuItem(menuItems[i].Title(), i == input.selectionItem);
             }
         }
-
-        private static void PrintEmptySpaceFill(int nonEmptySpace)
-        {
-            for (int i = 0; i < (rowLength - nonEmptySpace); i++)
-            {
-                Console.Write(" ");
-            }
-        }
-
-        private static void PrintBorderedSpaceFill(string borderType)
-        {
-            for (int i = 0; i < rowLength; i++)
-            {
-                Console.Write(borderType);
-            }
-        }
-
     }
 }

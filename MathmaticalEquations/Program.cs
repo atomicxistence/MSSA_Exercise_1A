@@ -4,7 +4,8 @@ namespace MathmaticalEquations
 {
     class Program
     {
-        public static List<IMenuItem> MenuItems { get; private set; }
+        private static List<IMenuItem> menuItems = new List<IMenuItem>();
+        private static Menu mainMenu;
 
         public static void Main()
         {
@@ -12,22 +13,22 @@ namespace MathmaticalEquations
 
             do
             {
-                Menu.Display();
+                mainMenu.Display();
 
-            } while (Input.Selection());
+            } while (mainMenu.Selecting());
 
-            MenuItems[Input.SelectionItem].Run();
+            menuItems[mainMenu.CurrentSelection()].Run();
         }
 
         private static void InitializeClasses()
         {
-            MenuItems = new List<IMenuItem>();
-
             var circleAreaCircumference = new CircleAreaCircumference();
-            MenuItems.Add(circleAreaCircumference);
+            menuItems.Add(circleAreaCircumference);
 
             var exit = new Exit();
-            MenuItems.Add(exit);
+            menuItems.Add(exit);
+
+            mainMenu = new Menu(menuItems, "Mathmatical Equations");
         }
     }
 }
