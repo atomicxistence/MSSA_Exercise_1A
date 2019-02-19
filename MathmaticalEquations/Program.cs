@@ -11,19 +11,25 @@ namespace MathmaticalEquations
         {
             InitializeClasses();
 
-            do
+            while (true)
             {
-                mainMenu.Display();
+                do
+                {
+                    mainMenu.Display();
 
-            } while (mainMenu.Selecting());
+                } while (mainMenu.Selecting());
 
-            menuItems[mainMenu.CurrentSelection()].Run();
+                menuItems[mainMenu.CurrentSelection()].Run();
+            }
         }
 
         private static void InitializeClasses()
         {
             var circleAreaCircumference = new CircleAreaCircumference();
             menuItems.Add(circleAreaCircumference);
+
+            var hemisphereVolume = new HemisphereVolume();
+            menuItems.Add(hemisphereVolume);
 
             var exit = new Exit();
             menuItems.Add(exit);

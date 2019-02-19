@@ -31,6 +31,7 @@ namespace MathmaticalEquations
             this.subtitle = subtitle;
 
             Console.CursorVisible = false;
+            Console.Clear();
             PrintBorder();
             PrintSubtitle();
             PrintTitle();
@@ -40,18 +41,52 @@ namespace MathmaticalEquations
         {
             this.subtitle = subtitle;
 
+            Console.Clear();
             Console.CursorVisible = false;
+            PrintBorder();
+            PrintTitle();
+            PrintSubtitle();
+            PrintSingleLine(question);
 
-            string answer = "";
-            return answer;
+            Console.CursorVisible = true;
+            return Console.ReadLine();
         }
 
-        public void Answer(string answer, string subtitle)
+        public void SingleLine(string firstLine, string subtitle)
         {
             this.subtitle = subtitle;
 
             Console.CursorVisible = false;
+            PrintSubtitle();
+            PrintSingleLine(firstLine);
+        }
 
+        public void DoubleLine(string firstLine, string secondLine, string subtitle)
+        {
+            this.subtitle = subtitle;
+
+            Console.CursorVisible = false;
+            PrintSubtitle();
+            PrintDoubleLine(firstLine, secondLine);
+        }
+
+        public void PrintMenuItem(string itemName, bool isCurrentlySelected)
+        {
+            if (isCurrentlySelected)
+            {
+                Console.BackgroundColor = highlightColor;
+                Console.ForegroundColor = textColor;
+                Console.Write(selectionIndicator);
+                Console.Write(itemName);
+                PrintEmptySpaceFill(rowLength - (itemName.Length + selectionIndicator.Length));
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.Write(" ");
+                Console.Write(itemName);
+                PrintEmptySpaceFill(rowLength - itemName.Length);
+            }
         }
 
         private void PrintBorder()
@@ -97,7 +132,7 @@ namespace MathmaticalEquations
             Console.ResetColor();
         }
 
-        private int PrintSubtitle()
+        private void PrintSubtitle()
         {
             Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 1);
             Console.ForegroundColor = titleHighlightColor;
@@ -106,26 +141,26 @@ namespace MathmaticalEquations
             Console.Write(subtitle);
             PrintEmptySpaceFill(rowLength - leftAlignCenter - subtitle.Length);
             Console.ResetColor();
-            return leftAlignCenter;
         }
 
-        public void PrintMenuItem(string itemName, bool isCurrentlySelected)
+        private void PrintSingleLine(string message)
         {
-            if (isCurrentlySelected)
-            {
-                Console.BackgroundColor = highlightColor;
-                Console.ForegroundColor = textColor;
-                Console.Write(selectionIndicator);
-                Console.Write(itemName);
-                PrintEmptySpaceFill(rowLength - (itemName.Length + selectionIndicator.Length));
-                Console.ResetColor();
-            }
-            else
-            {
-                Console.Write(" ");
-                Console.Write(itemName);
-                PrintEmptySpaceFill(rowLength - itemName.Length);
-            }
+            //clear lines
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 3);
+            PrintEmptySpaceFill(rowLength);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 4);
+            PrintEmptySpaceFill(rowLength);
+
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 3);
+            Console.Write(message);
+        }
+
+        private void PrintDoubleLine(string firstLine, string secondLine)
+        {
+            PrintSingleLine(firstLine);
+
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 4);
+            Console.Write(secondLine);
         }
     }
 }
