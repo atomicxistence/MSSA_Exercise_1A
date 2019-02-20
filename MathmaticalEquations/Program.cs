@@ -34,6 +34,9 @@ namespace MathmaticalEquations
             var triangleArea = new TriangleArea();
             menuItems.Add(triangleArea);
 
+            var quadraticEquation = new QuadraticEquation();
+            menuItems.Add(quadraticEquation);
+
             var exit = new Exit();
             menuItems.Add(exit);
 

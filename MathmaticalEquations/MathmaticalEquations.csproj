@@ -48,6 +48,8 @@
     <Compile Include="Applications\Hemisphere.cs" />
     <Compile Include="Applications\TriangleArea.cs" />
     <Compile Include="Applications\Triangle.cs" />
+    <Compile Include="Applications\QuadraticEquation.cs" />
+    <Compile Include="Applications\Univariate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Applications\" />
