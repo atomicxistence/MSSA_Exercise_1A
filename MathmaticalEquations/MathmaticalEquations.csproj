@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,7 +7,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MathmaticalEquations</RootNamespace>
     <AssemblyName>MathmaticalEquations</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,24 +37,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Applications\CircleAreaCircumference.cs" />
     <Compile Include="Applications\Circle.cs" />
-    <Compile Include="Utilities\Display.cs" />
     <Compile Include="Applications\Exit.cs" />
-    <Compile Include="Utilities\GlobalVariables.cs" />
-    <Compile Include="Utilities\IMenuItem.cs" />
-    <Compile Include="Utilities\Menu.cs" />
-    <Compile Include="Utilities\MenuInput.cs" />
-    <Compile Include="Utilities\Option.cs" />
-    <Compile Include="Utilities\Validator.cs" />
     <Compile Include="Applications\HemisphereVolume.cs" />
     <Compile Include="Applications\Hemisphere.cs" />
     <Compile Include="Applications\TriangleArea.cs" />
     <Compile Include="Applications\Triangle.cs" />
     <Compile Include="Applications\QuadraticEquation.cs" />
     <Compile Include="Applications\Univariate.cs" />
+    <Compile Include="Utilities.ConsoleUI\Display.cs" />
+    <Compile Include="Utilities.ConsoleUI\GlobalVariables.cs" />
+    <Compile Include="Utilities.ConsoleUI\IMenuItem.cs" />
+    <Compile Include="Utilities.ConsoleUI\Menu.cs" />
+    <Compile Include="Utilities.ConsoleUI\MenuInput.cs" />
+    <Compile Include="Utilities.ConsoleUI\Option.cs" />
+    <Compile Include="Utilities.ConsoleUI\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Applications\" />
-    <Folder Include="Utilities\" />
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

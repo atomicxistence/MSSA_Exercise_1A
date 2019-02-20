@@ -1,4 +1,4 @@
-﻿namespace MathmaticalEquations
+﻿namespace Utilities.ConsoleUI
 {
     public interface IMenuItem
     {

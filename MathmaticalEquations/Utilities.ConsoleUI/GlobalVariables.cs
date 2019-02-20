@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MathmaticalEquations
+namespace Utilities.ConsoleUI
 {
     public static class GlobalVariables
     {

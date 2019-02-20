@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace MathmaticalEquations
+namespace Utilities.ConsoleUI
 {
     public class Display
     {
         private string title;
         private string subtitle;
-        private string selectionIndicator = $" ▶ ";
+        private string selectionIndicator = " \u25b6 ";
 
         private int screenWidth;
         private int screenHeight;
