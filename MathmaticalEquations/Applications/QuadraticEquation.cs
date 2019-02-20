@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MathmaticalEquations
 {
@@ -24,7 +25,15 @@ namespace MathmaticalEquations
                 var coefficiantB = AskForInput("B");
                 var coefficiantC = AskForInput("C");
                 var univariate = new Univariate(coefficiantA, coefficiantB, coefficiantC);
-                display.DoubleLine("The answers to your quadratic equation are", $"{univariate.FirstAnswer} & {univariate.SecondAnswer}", "PRESS ENTER TO CONTINUE");
+
+                if (double.IsNaN(univariate.FirstAnswer) || double.IsNaN(univariate.SecondAnswer))
+                {
+                    display.SingleLine($"The coefficients {coefficiantA}, {coefficiantB}, {coefficiantC} do not provide a real solution.", "PRESS ENTER TO CONTINUE");
+                }
+                else
+                {
+                    display.DoubleLine("The real solutions to your quadratic equation are...", $"{univariate.FirstAnswer} & {univariate.SecondAnswer}", "PRESS ENTER TO CONTINUE");
+                }
 
             } while (AskAgain());
         }

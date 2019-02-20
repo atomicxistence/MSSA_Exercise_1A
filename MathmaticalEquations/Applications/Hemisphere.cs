@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace MathmaticalEquations
 {
     public class Hemisphere
