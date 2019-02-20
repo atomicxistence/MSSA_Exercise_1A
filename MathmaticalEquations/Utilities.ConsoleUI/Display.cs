@@ -6,11 +6,11 @@ namespace Utilities.ConsoleUI
     {
         private string title;
         private string subtitle;
-        private string selectionIndicator = " \u25b6 ";
+        private string selectionIndicator = GlobalVariables.SelectionIndicator;
 
         private int screenWidth;
         private int screenHeight;
-        private int totalRows;
+        private int halfRows;
 
         private int rowLength = GlobalVariables.rowLength;
         private ConsoleColor highlightColor = GlobalVariables.highlightColor;
@@ -23,7 +23,7 @@ namespace Utilities.ConsoleUI
             screenWidth = Console.WindowWidth;
             screenHeight = Console.WindowHeight;
             this.title = title;
-            totalRows = rows;
+            halfRows = (rows + 1) / 2;
         }
 
         public void MenuList(string subtitle)
@@ -96,10 +96,10 @@ namespace Utilities.ConsoleUI
             Console.ForegroundColor = borderColor;
 
             //Top Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 - 1);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows - 1);
             PrintBorderedSpaceFill("-");
             //Bottom Border
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 + totalRows / 2 + 1);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 + halfRows + 1);
             PrintBorderedSpaceFill("-");
 
             Console.ResetColor();
@@ -123,7 +123,7 @@ namespace Utilities.ConsoleUI
 
         private void PrintTitle()
         {
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows);
             Console.BackgroundColor = titleHighlightColor;
             Console.ForegroundColor = textColor;
             //variable to control the centering if the title is an odd number of characters
@@ -136,7 +136,7 @@ namespace Utilities.ConsoleUI
 
         private void PrintSubtitle()
         {
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 1);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows + 1);
             Console.ForegroundColor = titleHighlightColor;
             var leftAlignCenter = (rowLength / 2) - (subtitle.Length / 2);
             PrintEmptySpaceFill(leftAlignCenter);
@@ -148,12 +148,12 @@ namespace Utilities.ConsoleUI
         private void PrintSingleLine(string message)
         {
             //clear lines
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 3);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows + 3);
             PrintEmptySpaceFill(rowLength);
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 4);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows + 4);
             PrintEmptySpaceFill(rowLength);
 
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 3);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows + 3);
             Console.Write(message);
         }
 
@@ -161,7 +161,7 @@ namespace Utilities.ConsoleUI
         {
             PrintSingleLine(firstLine);
 
-            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - totalRows / 2 + 4);
+            Console.SetCursorPosition(screenWidth / 2 - rowLength / 2, screenHeight / 2 - halfRows + 4);
             Console.Write(secondLine);
         }
     }

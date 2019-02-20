@@ -12,5 +12,24 @@ namespace Utilities.ConsoleUI
         #endregion
 
         public static readonly int rowLength = 60;
+
+        public static string SelectionIndicator
+        {
+            get
+            {
+                switch (Environment.OSVersion.Platform)
+                {
+                    case PlatformID.Win32S:
+                    case PlatformID.Win32Windows:
+                    case PlatformID.Win32NT:
+                    case PlatformID.WinCE:
+                        return " > ";
+                    case PlatformID.MacOSX:
+                        return " ► ";
+                    default:
+                        return " > ";
+                }
+            }   
+        }
     }
 }
