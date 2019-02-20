@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MathmaticalEquations
+namespace Utilities.ConsoleUI
 {
     public class Menu
     {
@@ -11,7 +11,6 @@ namespace MathmaticalEquations
         private List<IMenuItem> menuItems = new List<IMenuItem>();
         private MenuInput input = new MenuInput();
 
-        private readonly string selectionIndicator = $" ▶ ";
         private readonly string subtitle = "USE ARROWS KEYS TO NAVIGATE | PRESS ENTER TO SELECT";
         private readonly int rowLength = GlobalVariables.rowLength;
         private readonly int defaultRows = 3;
