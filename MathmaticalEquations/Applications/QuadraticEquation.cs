@@ -35,7 +35,7 @@ namespace MathmaticalEquations
                     display.DoubleLine("The real solutions to your quadratic equation are...", $"{univariate.FirstAnswer} & {univariate.SecondAnswer}", "PRESS ENTER TO CONTINUE");
                 }
 
-            } while (AskAgain());
+            } while (RunAgain());
         }
 
         private double AskForInputCannotBeZero(string coefficient)
@@ -76,7 +76,7 @@ namespace MathmaticalEquations
             return AskForInput(coefficient);
         }
 
-        private bool AskAgain()
+        private bool RunAgain()
         {
             var twoOptionList = new List<IMenuItem>
             {

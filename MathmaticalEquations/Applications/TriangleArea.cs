@@ -24,10 +24,18 @@ namespace MathmaticalEquations
                 var sideA = AskForInput("A");
                 var sideB = AskForInput("B");
                 var sideC = AskForInput("C");
-                var triangle = new Triangle(sideA, sideB, sideC);
-                display.SingleLine($"Your triangle has an area of {triangle.Area}", "PRESS ENTER TO CONTINUE");
 
-            } while (AskAgain());
+                if (IsValidTriangle(sideA, sideB, sideC))
+                {
+                    var triangle = new Triangle(sideA, sideB, sideC);
+                    display.SingleLine($"Your triangle has an area of {triangle.Area}", "PRESS ENTER TO CONTINUE");
+                }
+                else
+                {
+                    display.SingleLine($"You have input an invalid triangle.", "PRESS ENTER TO CONTINUE");
+                }
+
+            } while (RunAgain());
         }
 
         private double AskForInput(string side)
@@ -49,7 +57,12 @@ namespace MathmaticalEquations
             return AskForInput(side);
         }
 
-        private bool AskAgain()
+        private bool IsValidTriangle(double a, double b, double c)
+        {
+            return a + b > c && a + c > b && b + c > a;
+        }
+
+        private bool RunAgain()
         {
             var twoOptionList = new List<IMenuItem>
             {

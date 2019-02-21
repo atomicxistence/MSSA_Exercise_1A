@@ -27,7 +27,7 @@ namespace MathmaticalEquations
                                    $"Your circle has a circumference of {circle.Circumference}", 
                                    "PRESS ENTER TO CONTINUE");
 
-            } while (AskAgain());
+            } while (RunAgain());
         }
 
         private double AskForInput()
@@ -49,7 +49,7 @@ namespace MathmaticalEquations
             return AskForInput();
         }
 
-        private bool AskAgain()
+        private bool RunAgain()
         {
             var twoOptionList = new List<IMenuItem>
             {
